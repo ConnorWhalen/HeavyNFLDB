@@ -1,0 +1,7 @@
+---
+
+- name: Pull Git Repo
+  git:
+    repo: https://github.com/ConnorWhalen/HeavyNFLDB.git
+    dest: /opt/HeavyNFLDB
+  
