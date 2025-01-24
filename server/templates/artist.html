@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{artist.name}} - HeavyNFLDB</title>
+
+        <link rel="stylesheet" type="text/css" href="/static/main.css"/>
+    </head>
+    <body>
+        <header class="header">
+            <a href="/">HeavyNFLDB</a>
+        </header>
+
+        <div class="section artist-section">
+
+            <b style="font-size: xx-large;">{{artist.name}}</b><br/><br/>
+
+            <b class="section-title">Albums:</b><br/>
+            <div class="artist-albums">
+            {%for album in artist.albums%}
+                <div class="artist-album-thumb">
+                    <div>
+                        <img class="artist-thumb" src="{{ thumbnail_map[album.id] }}">
+                    </div>
+                    <a href='/album/{{album.id}}'>{{album.name}}</a>
+                </div>
+            {%endfor%}
+            </div>
+            <br/>
+
+            <b class="section-title">Links:</b><br/>
+            <div class="artist-links">
+            {%for link in links%}
+                {{link[0]}} - <a href='{{link[1]}}'>{{link[1]}}</a><br/>
+            {%endfor%}
+            </div>
+        </div>
+    </body>
+</html>

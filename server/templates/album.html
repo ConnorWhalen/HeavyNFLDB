@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <title>{{album.name}} - HeavyNFLDB</title>
+
+        <link rel="stylesheet" type="text/css" href="/static/main.css"/>
+    </head>
+    <body>
+        <header class="header">
+            <a href="/">HeavyNFLDB</a>
+        </header>
+
+        <div class="section">
+            <b style="font-size: xx-large;">{{ album.name }}</b><br/><br/>
+
+            <img src="{{ thumbnail }}"/>
+            <br/><br/>
+
+            {% if album.artists|length == 1 %}
+                <b class="section-title">Artist:</b>
+
+                <a class="section-title" href='/artist/{{ album.artists[0].id }}'>{{ album.artists[0].name }}</a><br/><br/>
+
+                <b class="section-title">Songs:</b><br/>
+                {% for song in album.songs %}
+                    {{ song.title }} <a href="{{ song.video.url }}">[YouTube]</a><br/>
+                {% endfor %}
+                <br/>
+            {% else %}
+                <b class="section-title">Artists:</b><br/>
+
+                {% for artist in album.artists %}
+                    <a href='/artist/{{ artist.id }}'>{{ artist.name }}</a><br/>
+                {% endfor %}
+                <br/>
+
+                <b class="section-title">Songs:</b><br/>
+                {% for song in album.songs %}
+                    {{ song.artist }} - {{ song.title }} <a href="{{ song.video.url }}">[YouTube]</a><br/>
+                {% endfor %}
+                <br/>
+            {% endif %}
+
+            {% if links|length > 0 %}
+            <b class="section-title">Links:</b><br/>
+            {% endif %}
+            {% for link in links %}
+                {{ link[0] }} - <a href='{{ link[1] }}'>{{ link[1] }}</a><br/>
+            {% endfor %}
+        </div>
+    </body>
+</html>
