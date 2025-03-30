@@ -11,7 +11,7 @@
 
             <b class="section-title">Songs:</b><br/>
             {% for song in album.songs %}
-                {{ song.title }} <div onclick="ytClick('{{ song.video.url }}')" class="yt-link"><u>[YouTube]</u></a><br/>
+                {{ song.title }} <span onclick="ytClick('{{ song.video.url }}')" class="yt-link"><u>[YouTube]</u></span><br/>
             {% endfor %}
             <br/>
         {% else %}
