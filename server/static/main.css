@@ -36,9 +36,17 @@ select:focus {
   
 header.header {
     padding-left: 2rem;
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     font-size: xx-large;
+}
+  
+span.header {
+    padding-left: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: xx-large;
+    vertical-align: top;
 }
 
 .dt-container {
@@ -58,6 +66,7 @@ header.header {
     padding-bottom: 1rem;
     border-radius: 8px;
     width: max-content;
+    min-height: 430px;
 }
 
 .section-title {
@@ -111,7 +120,20 @@ input.column-input {
 }
 
 .yt-embed {
-    width: 960px;
-    height: 540px;
-    margin-left: 300px;
+    width: 48rem;
+    height: 27rem;
+    margin-left: 10%;
+}
+
+.yt-link, .artist-link, .album-link, .table-link {
+    cursor: pointer;
+}
+
+.album-text {
+    padding-left: 520px;
+    vertical-align: top;
+}
+
+.album-img {
+    float: left;
 }

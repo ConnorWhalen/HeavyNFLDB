@@ -16,8 +16,12 @@ from server.models import AlbumArtist, Song, Artist, Album, Link, Video
 # _=1725403948133
 
 @app.route("/")
-def songs_page():
+def main_page():
     return render_template("index.html")
+
+@app.route("/table")
+def table():
+    return render_template("table.html")
 
 @app.route("/album/<int:album_id>")
 def album_page(album_id):
@@ -25,6 +29,9 @@ def album_page(album_id):
         joinedload(Album.artists),
         joinedload(Album.songs).joinedload(Song.video)
     ).one()
+
+    for song in album.songs:
+        song.video.url = song.video.url.replace("watch?v=", "embed/")
 
     links = (
         db.session.query(Link.site, Link.url)
@@ -116,6 +123,11 @@ def get_songs():
         query = Song.sort(query, column_name, is_asc)
     
         i += 1
+    
+    # Sort by newest by default
+    if i == 0:
+        query = Song.sort(query, "release_date", False)
+
 
     songs = query.offset(page_number).limit(page_size).all()
     return jsonify({

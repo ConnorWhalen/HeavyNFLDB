@@ -1,52 +1,39 @@
-<!doctype html>
-<html>
-    <head>
-        <title>{{album.name}} - HeavyNFLDB</title>
+<div class="section">
+    <b style="font-size: xx-large;">{{ album.name }}</b><br/><br/>
 
-        <link rel="stylesheet" type="text/css" href="/static/main.css"/>
-    </head>
-    <body>
-        <header class="header">
-            <a href="/">HeavyNFLDB</a>
-        </header>
+    <img class="album-img" src="{{ thumbnail }}"/>
 
-        <div class="section">
-            <b style="font-size: xx-large;">{{ album.name }}</b><br/><br/>
+    <div class="album-text">
+        {% if album.artists|length == 1 %}
+            <b class="section-title">Artist:</b>
 
-            <img src="{{ thumbnail }}"/>
-            <br/><br/>
+            <div class="section-title artist-link" onclick='artistClick({{album.artists[0].id}})'><u>{{ album.artists[0].name }}</u></div><br/><br/>
 
-            {% if album.artists|length == 1 %}
-                <b class="section-title">Artist:</b>
-
-                <a class="section-title" href='/artist/{{ album.artists[0].id }}'>{{ album.artists[0].name }}</a><br/><br/>
-
-                <b class="section-title">Songs:</b><br/>
-                {% for song in album.songs %}
-                    {{ song.title }} <a href="{{ song.video.url }}">[YouTube]</a><br/>
-                {% endfor %}
-                <br/>
-            {% else %}
-                <b class="section-title">Artists:</b><br/>
-
-                {% for artist in album.artists %}
-                    <a href='/artist/{{ artist.id }}'>{{ artist.name }}</a><br/>
-                {% endfor %}
-                <br/>
-
-                <b class="section-title">Songs:</b><br/>
-                {% for song in album.songs %}
-                    {{ song.artist }} - {{ song.title }} <a href="{{ song.video.url }}">[YouTube]</a><br/>
-                {% endfor %}
-                <br/>
-            {% endif %}
-
-            {% if links|length > 0 %}
-            <b class="section-title">Links:</b><br/>
-            {% endif %}
-            {% for link in links %}
-                {{ link[0] }} - <a href='{{ link[1] }}'>{{ link[1] }}</a><br/>
+            <b class="section-title">Songs:</b><br/>
+            {% for song in album.songs %}
+                {{ song.title }} <div onclick="ytClick('{{ song.video.url }}')" class="yt-link"><u>[YouTube]</u></a><br/>
             {% endfor %}
-        </div>
-    </body>
-</html>
+            <br/>
+        {% else %}
+            <b class="section-title">Artists:</b><br/>
+
+            {% for artist in album.artists %}
+                <div onclick='artistClick({{artist.id}})' class='artist-link'><u>{{artist.name}}</u></div>
+            {% endfor %}
+            <br/>
+
+            <b class="section-title">Songs:</b><br/>
+            {% for song in album.songs %}
+                {{ song.artist }} - {{ song.title }} <div onclick="ytClick('{{ song.video.url }}')" class="yt-link"><u>[YouTube]</u></div><br/>
+            {% endfor %}
+            <br/>
+        {% endif %}
+
+        {% if links|length > 0 %}
+        <b class="section-title">Links:</b><br/>
+        {% endif %}
+        {% for link in links %}
+            {{ link[0] }} - <a href='{{ link[1] }}' taret="_blank">{{ link[1] }}</a><br/>
+        {% endfor %}
+    </div>
+</div>
