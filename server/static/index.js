@@ -1,3 +1,7 @@
+function ytClick(element) {
+    document.getElementById("yt-embed").setAttribute("src", element.innerText);
+}
+
 $(document).ready( function () {
     $('#myTable').DataTable({
         serverSide: true,
@@ -35,7 +39,8 @@ $(document).ready( function () {
                 "targets": 7,
                 "data": "video_url",
                 "render": function ( data, type, row, meta ) {
-                    return '<a href="'+data+'" target="_blank">'+data+'</a>';
+                    // return '<a href="'+data+'" target="_blank">'+data+'</a>';
+                    return '<div onclick="ytClick(this)">'+data+'</a>';
                 }
             }
         ],

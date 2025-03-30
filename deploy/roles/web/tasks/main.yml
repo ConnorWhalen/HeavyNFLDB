@@ -4,4 +4,15 @@
   git:
     repo: https://github.com/ConnorWhalen/HeavyNFLDB.git
     dest: /opt/HeavyNFLDB
+
+- name: Install pip Requirements
+  pip:
+    requirements: /opt/HeavyNFLDB/requirements.txt
+    virtualenv: /opt/HeavyNFLDB/venv
+
+- name: Copy db file
+  copy:
+    src: heavy-nfld.db
+    dest: /opt/HeavyNFLDB/server/heavy-nfld.db
+
   

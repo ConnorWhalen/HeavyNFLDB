@@ -22,7 +22,7 @@ class Video(db.Model):
             "duration_secs": self.duration_secs,
             "type": self.type,
             "thumbnail_url": self.thumbnail_url,
-            "url": self.url,
+            "url": self.url.replace("watch?v=", "embed/"),
         }
     
 
@@ -79,7 +79,8 @@ class Song(db.Model):
             "release_date": self.release_date,
             "genre": self.genre,
             "label": self.label,
-            "video_url": self.video.url
+            # Make URL embed-compatible
+            "video_url": self.video.url.replace("watch?v=", "embed/")
         }
     
     @classmethod

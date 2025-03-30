@@ -109,3 +109,9 @@ input.column-input {
 .artist-links {
     padding-top: 0.5rem;
 }
+
+.yt-embed {
+    width: 960px;
+    height: 540px;
+    margin-left: 300px;
+}

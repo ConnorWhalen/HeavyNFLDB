@@ -3,3 +3,4 @@ server/heavy-nfld.db
 hosts
 backups
 data
+deploy/roles/web/heavy-nfld.db
