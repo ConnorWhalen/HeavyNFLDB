@@ -20,9 +20,12 @@
   template:
     src: templates/webserver.j2
     dest: /etc/systemd/system/heavynfld-webserver.service
+  become: true
+
 
 - name: Reload Webserver
   systemd_service:
     name: heavynfld-webserver
     state: started
+  become: true
   

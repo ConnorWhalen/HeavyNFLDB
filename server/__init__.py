@@ -16,9 +16,16 @@ class Config:
 class ServerConfig(Config):
     LOG_DIRECTORY = '/var/log/HeavyNFLDB/'
 
-    
+CONFIGS = {
+    "LOCAL": Config,
+    "SERVER": ServerConfig
+}
+
 app = Flask("server")
-app.config.from_object(Config)
+
+config_name = os.getenv("FLASK_CONFIG") or 'LOCAL'
+
+app.config.from_object(CONFIGS[config_name])
 db = SQLAlchemy(app)
 
 file_log_handler = TimedRotatingFileHandler(
@@ -47,5 +54,7 @@ default_handler.setFormatter(formatter)
 file_log_handler.setFormatter(formatter)
 
 app.logger.addHandler(file_log_handler)
+
+app.logger.info("Loaded app with config %s", config_name)
 
 from server import api

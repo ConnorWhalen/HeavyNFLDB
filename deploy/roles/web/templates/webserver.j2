@@ -1,3 +1,4 @@
 [Service]
 WorkingDirectory=/opt/HeavyNFLDB
-ExecStart=/opt/HeavyNFLDB/venv/bin/python gunicorn --workers=2 --config server/gunicorn_config.py server:app
+Environment="FLASK_CONFIG=SERVER"
+ExecStart=/opt/HeavyNFLDB/venv/bin/python /opt/HeavyNFLDB/venv/bin/gunicorn --workers=2 --config server/gunicorn_config.py server:app

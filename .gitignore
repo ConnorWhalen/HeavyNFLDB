@@ -4,3 +4,4 @@ hosts
 backups
 data
 deploy/roles/web/heavy-nfld.db
+deploy/vault-password.txt

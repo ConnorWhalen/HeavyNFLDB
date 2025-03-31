@@ -3,3 +3,6 @@
 - hosts: web
   roles: 
     - web
+  vars_files:
+    - group_vars/vault
+    - group_vars/vars
