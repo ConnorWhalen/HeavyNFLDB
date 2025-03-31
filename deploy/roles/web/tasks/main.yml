@@ -16,4 +16,13 @@
     src: heavy-nfld.db
     dest: /opt/HeavyNFLDB/server/heavy-nfld.db
 
+- name: Copy service file
+  template:
+    src: templates/webserver.j2
+    dest: /etc/systemd/system/heavynfld-webserver.service
+
+- name: Reload Webserver
+  systemd_service:
+    name: heavynfld-webserver
+    state: started
   

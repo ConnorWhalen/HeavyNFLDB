@@ -1,5 +1,6 @@
 from itertools import chain
 import os
+import logging
 
 from flask import Flask, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
@@ -9,6 +10,8 @@ from sqlalchemy.sql.functions import min
 from server import app, db
 from server.models import AlbumArtist, Song, Artist, Album, Link, Video
 
+logger = logging.getLogger(__name__)
+
 # Increments each call in session
 # draw=1
 
@@ -17,14 +20,17 @@ from server.models import AlbumArtist, Song, Artist, Album, Link, Video
 
 @app.route("/")
 def main_page():
+    logger.info("Loading index.")
     return render_template("index.html")
 
 @app.route("/table")
 def table():
+    logger.info("Fetching table.")
     return render_template("table.html")
 
 @app.route("/album/<int:album_id>")
 def album_page(album_id):
+    logger.info("Fetching album %s.", album_id)
     album = Album.query.filter_by(id=album_id).options(
         joinedload(Album.artists),
         joinedload(Album.songs).joinedload(Song.video)
@@ -53,6 +59,7 @@ def album_page(album_id):
 
 @app.route("/artist/<int:artist_id>")
 def artist_page(artist_id):
+    logger.info("Fetching artist %s.", artist_id)
     artist = Artist.query.filter_by(id=artist_id).options(
         joinedload(Artist.albums)
     ).one()
@@ -82,6 +89,7 @@ def artist_page(artist_id):
 
 @app.route("/api/songs")
 def get_songs():
+    logger.info("Fetching songs.")
     page_number = int(request.args.get("start")) if request.args.get("start") else 0
     page_size = int(request.args.get("length")) if request.args.get("length") else 10
 
