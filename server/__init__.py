@@ -43,7 +43,7 @@ class RequestFormatter(Formatter):
     def format(self, record):
         if has_request_context():
             record.url = request.url
-            record.remote_addr = request.remote_addr
+            record.remote_addr = os.environ.get("REMOTE_ADDR")
         else:
             record.url = None
             record.remote_addr = None
