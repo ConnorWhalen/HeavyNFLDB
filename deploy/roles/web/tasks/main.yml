@@ -22,10 +22,8 @@
     dest: /etc/systemd/system/heavynfld-webserver.service
   become: true
 
-
 - name: Reload Webserver
   systemd_service:
     name: heavynfld-webserver
-    state: started
+    state: restarted
   become: true
-  

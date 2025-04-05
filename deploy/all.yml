@@ -3,6 +3,7 @@
 - hosts: web
   roles: 
     - web
+    - { role: geerlingguy.nginx, become: true }
   vars_files:
     - group_vars/vault
     - group_vars/vars

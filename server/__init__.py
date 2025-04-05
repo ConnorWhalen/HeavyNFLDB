@@ -34,6 +34,7 @@ file_log_handler = TimedRotatingFileHandler(
     backupCount=30
 )
 file_log_handler.setLevel(logging.INFO)
+default_handler.setLevel(logging.INFO)
 
 class RequestFormatter(Formatter):
     def format(self, record):
@@ -54,6 +55,7 @@ default_handler.setFormatter(formatter)
 file_log_handler.setFormatter(formatter)
 
 app.logger.addHandler(file_log_handler)
+app.logger.setLevel(logging.INFO)
 
 app.logger.info("Loaded app with config %s", config_name)
 
