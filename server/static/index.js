@@ -1,5 +1,8 @@
 function ytClick(url) {
-    document.getElementById("yt-embed").setAttribute("src", url);
+    let yt_embed = document.getElementById("yt-embed");
+
+    yt_embed.removeAttribute("srcdoc");
+    yt_embed.setAttribute("src", url);
 }
 
 function loadPage() {

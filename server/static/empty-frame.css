@@ -1,0 +1,27 @@
+:root{ 
+    --page-bg: rgb(0, 0, 0);
+    --section-bg: rgb(60, 30, 30);
+    --table-bg: rgb(40, 10, 10);
+    --text-color: rgb(204, 204, 204);
+    --text-disabled: rgb(150, 50, 50);
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--page-bg);
+    color: var(--text-color);   
+    font-family: Lato, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.yt-embed-empty {
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
