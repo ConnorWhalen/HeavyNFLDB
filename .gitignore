@@ -5,3 +5,4 @@ backups
 data
 deploy/roles/web/heavy-nfld.db
 deploy/vault-password.txt
+deploy/cert.sh

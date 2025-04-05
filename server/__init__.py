@@ -6,15 +6,18 @@ from logging.handlers import TimedRotatingFileHandler
 from flask import Flask, has_request_context, request
 from flask.logging import default_handler
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'heavy-nfld.db')
     LOG_DIRECTORY = '/usr/local/var/log/HeavyNFLDB/'
+    HAS_PROXY = False
 
 class ServerConfig(Config):
     LOG_DIRECTORY = '/var/log/HeavyNFLDB/'
+    HAS_PROXY = True
 
 CONFIGS = {
     "LOCAL": Config,
@@ -58,5 +61,10 @@ app.logger.addHandler(file_log_handler)
 app.logger.setLevel(logging.INFO)
 
 app.logger.info("Loaded app with config %s", config_name)
+
+if app.config["HAS_PROXY"]:
+    app.wsgi_app = ProxyFix(
+        app.wsgi_app, x_for=1, x_host=1,
+    )
 
 from server import api
