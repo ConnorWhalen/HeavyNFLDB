@@ -1,7 +1,0 @@
-[Service]
-User=Connor
-WorkingDirectory=/opt/HeavyNFLDB
-Environment="FLASK_CONFIG=SERVER"
-ExecStart=/opt/HeavyNFLDB/venv/bin/python /opt/HeavyNFLDB/venv/bin/gunicorn --workers=2 --config server/gunicorn_config.py server:app
-StandardOutput=append:/var/log/HeavyNFLDB/out.log
-StandardError=append:/var/log/HeavyNFLDB/err.log
