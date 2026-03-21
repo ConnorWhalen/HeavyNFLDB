@@ -1,0 +1,1 @@
+from serverv2.local_app import app

@@ -1,31 +1,27 @@
 from itertools import chain
 import os
 
-from flask import Flask, jsonify, render_template, request, current_app
+from flask import Blueprint, Flask, jsonify, render_template, request, current_app
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import joinedload
 from sqlalchemy.sql.functions import min
 
-from server import app, db
+from server import db
 from server.models import AlbumArtist, Song, Artist, Album, Link, Video
 
-# Increments each call in session
-# draw=1
+main_api = Blueprint('main_api', __name__)
 
-# Current local time
-# _=1725403948133
-
-@app.route("/")
+@main_api.route("/")
 def main_page():
     current_app.logger.info("Loading index.")
     return render_template("index.html")
 
-@app.route("/table")
+@main_api.route("/table")
 def table():
     current_app.logger.info("Fetching table.")
     return render_template("table.html")
 
-@app.route("/album/<int:album_id>")
+@main_api.route("/album/<int:album_id>")
 def album_page(album_id):
     current_app.logger.info("Fetching album %s.", album_id)
     album = Album.query.filter_by(id=album_id).options(
@@ -54,7 +50,7 @@ def album_page(album_id):
     )
     return render_template("album.html", album=album, links=links, thumbnail=first_video.thumbnail_url.replace("default.jpg", "hqdefault.jpg"))
 
-@app.route("/artist/<int:artist_id>")
+@main_api.route("/artist/<int:artist_id>")
 def artist_page(artist_id):
     current_app.logger.info("Fetching artist %s.", artist_id)
     artist = Artist.query.filter_by(id=artist_id).options(
@@ -84,7 +80,7 @@ def artist_page(artist_id):
 
     return render_template("artist.html", artist=artist, links=links, thumbnail_map=thumbnail_map)
 
-@app.route("/api/songs")
+@main_api.route("/api/songs")
 def get_songs():
     current_app.logger.info("Fetching songs.")
     page_number = int(request.args.get("start")) if request.args.get("start") else 0
@@ -133,6 +129,11 @@ def get_songs():
     if i == 0:
         query = Song.sort(query, "release_date", False)
 
+    # Increments each call in session
+    # draw=1
+
+    # Current local time
+    # _=1725403948133
 
     songs = query.offset(page_number).limit(page_size).all()
     return jsonify({

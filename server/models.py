@@ -25,6 +25,69 @@ class Video(db.Model):
             "url": self.url.replace("watch?v=", "embed/"),
         }
     
+    @classmethod
+    def filter_global(cls, query: Query, value: str) -> Query:
+        return query.filter(
+            or_(
+                Video.title.contains(value),
+                Video.description.contains(value),
+                Video.upload_date.contains(value),
+                Video.type.contains(value),
+            )
+        )
+    
+    @classmethod
+    def filter_column(cls, query: Query, filter_name: str, filter_value: str) -> Query:
+        column = None
+        match filter_name:
+            case "id":
+                column = Video.id
+            case "title":
+                column = Video.title
+            case "description":
+                column = Video.description
+            case "upload_date":
+                column = Video.upload_date
+            case "duration_secs":
+                column = Video.duration_secs
+            case "type":
+                column = Video.type
+            case "thumbnail_url":
+                column = Video.thumbnail_url
+            case "url":
+                column = Video.url
+        
+        if column:
+            query = query.filter(column.contains(filter_value))
+        
+        return query
+
+    @classmethod
+    def sort(cls, query: Query, sort_name: str, is_asc: bool) -> Query:
+        column = None
+        match sort_name:
+            case "id":
+                column = Video.id
+            case "title":
+                column = Video.title
+            case "description":
+                column = Video.description
+            case "upload_date":
+                column = Video.upload_date
+            case "duration_secs":
+                column = Video.duration_secs
+            case "type":
+                column = Video.type
+            case "thumbnail_url":
+                column = Video.thumbnail_url
+            case "url":
+                column = Video.url
+        
+        if column:
+            query = query.order_by(nullslast(column.asc() if is_asc else column.desc()))
+        
+        return query
+    
 
 class Artist(db.Model):
     id = db.Column(db.Integer(), primary_key=True)

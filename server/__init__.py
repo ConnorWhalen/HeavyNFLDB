@@ -6,6 +6,7 @@ from logging.handlers import TimedRotatingFileHandler
 from flask import Flask, has_request_context, request
 from flask.logging import default_handler
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.exceptions import Forbidden
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -14,10 +15,12 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'heavy-nfld.db')
     LOG_DIRECTORY = '/usr/local/var/log/HeavyNFLDB/'
     HAS_PROXY = False
+    VIDEO_API_ENABLE = True
 
 class ServerConfig(Config):
     LOG_DIRECTORY = '/var/log/HeavyNFLDB/'
     HAS_PROXY = True
+    VIDEO_API_ENABLE = False
 
 CONFIGS = {
     "LOCAL": Config,
@@ -51,7 +54,7 @@ class RequestFormatter(Formatter):
         return super().format(record)
 
 formatter = RequestFormatter(
-    '[%(asctime)s] %(remote_addr)s requested %(url)s\n'
+    '[%(asctime)s] %(remote_addr)s requested %(url)s: '
     '%(levelname)s in %(module)s: %(message)s'
 )
 default_handler.setFormatter(formatter)
@@ -67,4 +70,13 @@ if app.config["HAS_PROXY"]:
         app.wsgi_app, x_for=1, x_host=1,
     )
 
-from server import api
+from server.api import main_api
+from server.video_api import video_api
+
+app.register_blueprint(main_api)
+
+if app.config["VIDEO_API_ENABLE"]:
+    app.logger.info("Enabling video API")
+    app.register_blueprint(video_api, url_prefix="/video")
+
+

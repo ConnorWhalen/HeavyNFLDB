@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+    <head>
+        <title>HeavyNFLDB</title>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/2.1.5/css/dataTables.dataTables.min.css">
+        <script src="//cdn.datatables.net/2.1.5/js/dataTables.min.js"></script>
+
+        <script src="/static/videos.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/videos.css"/>
+    </head>
+    <body>
+        <span class="header table-link">
+            <a href="/">HeavyNFLDB</a>
+        </span>
+
+        <iframe id="yt-embed" class="yt-embed" src="" srcdoc="<link rel='stylesheet' type='text/css' href='/static/empty-frame.css'/><div class='yt-embed-empty'>YouTube links will open here</div>">
+        </iframe>
+
+        <table id="myTable" class="cell-border nowrap compact stripe">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Upload Date</th>
+                    <th>Duration (s)</th>
+                    <th>Type</th>
+                    <th>Thumbnail URL</th>
+                    <th>URL</th>
+                    <th>YouTube</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Upload Date</th>
+                    <th>Duration (s)</th>
+                    <th>Type</th>
+                    <th>Thumbnail URL</th>
+                    <th>URL</th>
+                    <th>YouTube</th>
+                </tr>
+            </tfoot>
+        </table>
+
+    </body>
+</html>
