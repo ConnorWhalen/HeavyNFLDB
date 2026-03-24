@@ -2,13 +2,13 @@
 const PAGE_SIZE = 100;
 
 async function loadIndex(name) {
-    const resp = await fetch(`/static/data/${name}_idx.json.gz`);
+    const resp = await fetch(`assets.heavynfldb.ca/data/${name}_idx.json.gz`);
     const serializedIndex = await resp.json();
     return lunr.Index.load(serializedIndex);
 }
 
 async function loadList(name) {
-    const resp = await fetch(`/static/data/${name}.json.gz`);
+    const resp = await fetch(`assets.heavynfldb.ca/data/${name}.json.gz`);
     return await resp.json();
 }
 
