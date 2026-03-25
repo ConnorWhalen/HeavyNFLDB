@@ -5,7 +5,7 @@ function createAlbumLI(album, feed) {
     li.innerHTML = (
         '<span class="song-li-left">' +
             '<div class="song-li-thumb-cover">' +
-                `<img class="song-li-thumb" src="https://assetsheavynfldb.ca/thumbnails/${album.thumb_video_id}/hqdefault.jpg"/>` +
+                `<img class="song-li-thumb" src="https://assets.heavynfldb.ca/thumbnails/${album.thumb_video_id}/hqdefault.jpg"/>` +
             '</div>' +
         '</span>' +
         '<span class="song-li-centre">' +
@@ -26,7 +26,7 @@ function createAlbumPreview(album) {
             closeIcon(24) +
         '</div>' +
         `<div class="song-preview-thumb-cover">` +
-            `<img class="song-preview-thumb" src="https://assetsheavynfldb.ca/thumbnails/${album.thumb_video_id}/hqdefault.jpg"></img>` +
+            `<img class="song-preview-thumb" src="https://assets.heavynfldb.ca/thumbnails/${album.thumb_video_id}/hqdefault.jpg"></img>` +
         '</div>'
     );
     preview.innerHTML += `${album.name}<br/>${album.artists}<br/><br/>`;

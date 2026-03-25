@@ -5,7 +5,7 @@ function createArtistLI(artist, feed) {
     li.innerHTML = (
         '<span class="song-li-left">' +
             '<div class="song-li-thumb-cover">' +
-                `<img class="song-li-thumb" src="https://assetsheavynfldb.ca/thumbnails/${artist.thumb_video_id}/hqdefault.jpg"/>` +
+                `<img class="song-li-thumb" src="https://assets.heavynfldb.ca/thumbnails/${artist.thumb_video_id}/hqdefault.jpg"/>` +
             '</div>' +
         '</span>' +
         '<span class="song-li-centre">' +
@@ -27,7 +27,7 @@ function createArtistPreview(artist) {
             closeIcon(24) +
         '</div>' +
         `<div class="song-preview-thumb-cover">` +
-            `<img class="song-preview-thumb" src="https://assetsheavynfldb.ca/thumbnails/${artist.thumb_video_id}/hqdefault.jpg"></img>` +
+            `<img class="song-preview-thumb" src="https://assets.heavynfldb.ca/thumbnails/${artist.thumb_video_id}/hqdefault.jpg"></img>` +
         '</div>'
     );
     preview.innerHTML += `${artist.name}<br/>${artist.hometowns}<br/>${artist.genres}<br/><br/>`;
