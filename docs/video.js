@@ -2,14 +2,14 @@
 function videoPlayer(video, video_player) {
     if(Hls.isSupported()) {
         const hls = new Hls();
-        hls.loadSource(`assets.heavynfldb.ca/video_streams/${video.id}/playlist.m3u8`);
+        hls.loadSource(`https://assetsheavynfldb.ca/video_streams/${video.id}/playlist.m3u8`);
         hls.attachMedia(video_player);
         hls.on(Hls.Events.MANIFEST_PARSED, function() {
             video_player.play();
         });
     }
     else if (video_player.canPlayType('application/vnd.apple.mpegurl')) {
-        video_player.src = `assets.heavynfldb.ca/video_streams/${video.id}/playlist.m3u8`;
+        video_player.src = `https://assetsheavynfldb.ca/video_streams/${video.id}/playlist.m3u8`;
         video_player.addEventListener('canplay', function() {
             video_player.play();
         });
@@ -54,7 +54,7 @@ function createVideoLI(video, feed) {
     li.innerHTML = (
         '<span class="song-li-left">' +
             '<div class="song-li-thumb-cover">' +
-                `<img class="song-li-thumb" src="assets.heavynfldb.ca/thumbnails/${video.id}/hqdefault.jpg"/>` +
+                `<img class="song-li-thumb" src="https://assetsheavynfldb.ca/thumbnails/${video.id}/hqdefault.jpg"/>` +
             '</div>' +
         '</span>' +
         '<span class="song-li-centre">' +
@@ -79,7 +79,7 @@ function createVideoPreview(video) {
             closeIcon(24) +
         '</div>' +
         `<div class="song-preview-thumb-cover">` +
-            `<img class="song-preview-thumb" src="assets.heavynfldb.ca/thumbnails/${video.id}/hqdefault.jpg"></img>` +
+            `<img class="song-preview-thumb" src="https://assetsheavynfldb.ca/thumbnails/${video.id}/hqdefault.jpg"></img>` +
         '</div>'
     );
     preview.innerHTML += `${video.title}<br/>${video.upload_date}<br/><br/>${video.description}`;

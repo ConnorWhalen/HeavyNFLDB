@@ -5,7 +5,7 @@ function createSongLI(song, feed) {
     li.innerHTML = (
         '<span class="song-li-left">' +
             '<div class="song-li-thumb-cover">' +
-                `<img class="song-li-thumb" src="assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
+                `<img class="song-li-thumb" src="https://assetsheavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
             '</div>' +
         '</span>' +
         '<span class="song-li-centre">' +
@@ -30,7 +30,7 @@ function createSongPreview(song) {
             closeIcon(24) +
         '</div>' +
         `<div class="song-preview-thumb-cover">` +
-            `<img class="song-preview-thumb" src="assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"></img>` +
+            `<img class="song-preview-thumb" src="https://assetsheavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"></img>` +
         '</div>'
     );
     preview.innerHTML += `${song.title}<br/>${song.artist}<br/>${song.album}<br/>${song.release_date}<br/>${song.genre}<br/>${song.hometown}<br/>${song.label}`
@@ -51,7 +51,7 @@ function playSong(song) {
         '</div>' +
         '<span class="song-li-left">' +
             '<div class="song-player-thumb-cover">' +
-                `<img class="song-li-thumb" src="assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
+                `<img class="song-li-thumb" src="https://assetsheavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
             '</div>' +
         '</span>' +
         '<span class="song-li-centre">' +
@@ -65,7 +65,7 @@ function playSong(song) {
     player.setAttribute('song-id', song.id);
 
     const audio = document.getElementById('audio-player');
-    audio.setAttribute('src', `assets.heavynfldb.ca/streams/${song.video_id}/playlist.m3u8`);
+    audio.setAttribute('src', `https://assetsheavynfldb.ca/streams/${song.video_id}/playlist.m3u8`);
     audio.play()
 
     $('#song-player-close').on('click', (event) => {
