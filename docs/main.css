@@ -65,12 +65,19 @@ body {
     right: 0;
     margin: 0.5rem;
     margin-top: 0;
-    max-width: var(--right-sidebar-width);
+    width: var(--right-sidebar-width);
     height: 100%;
+    overflow-y: auto;
+}
+
+#right-sidebar-pad {
+    width: 100%;
+    height: 8rem;
 }
 
 #song-player {
     display: none;
+    flex-wrap: wrap;
     position: relative;
     padding: 1rem;
     margin-bottom: 0.5rem;
@@ -78,6 +85,12 @@ body {
     border-radius: 0.25rem;
     align-items: center;
     line-height: 150%;
+}
+
+.song-player-top {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 #audio-player {

@@ -49,19 +49,21 @@ function playSong(song) {
         '<div id="song-player-close">' +
             closeIcon(24) +
         '</div>' +
-        '<span class="song-li-left">' +
-            '<div class="song-player-thumb-cover">' +
-                `<img class="song-li-thumb" src="https://assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
-            '</div>' +
-        '</span>' +
-        '<span class="song-li-centre">' +
-            `<div id=song-player-title class="song-li-title">${song.title}</div>` +
-            `<div id=song-player-artist class="song-li-title">${song.artist}</div>` +
-            `<div id=song-player-album class="song-li-subtitle">${song.album}</div>` +
-        '</span>' +
+        '<div class="song-player-top">' +
+            '<span class="song-li-left">' +
+                '<div class="song-player-thumb-cover">' +
+                    `<img class="song-li-thumb" src="https://assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"/>` +
+                '</div>' +
+            '</span>' +
+            '<span class="song-li-centre">' +
+                `<div id=song-player-title class="song-li-title">${song.title}</div>` +
+                `<div id=song-player-artist class="song-li-title">${song.artist}</div>` +
+                `<div id=song-player-album class="song-li-subtitle">${song.album}</div>` +
+            '</span>' +
+        '</div>' +
         '<audio id=audio-player controls controlsList="noplaybackrate"></audio>'
     );
-    player.style.display = 'block';
+    player.style.display = 'flex';
     player.setAttribute('song-id', song.id);
 
     const audio = document.getElementById('audio-player');
