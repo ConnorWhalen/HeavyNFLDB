@@ -13,7 +13,6 @@ body {
     background-color: var(--page-bg);
     color: var(--text-color);   
     font-family: Lato, sans-serif;
-    overflow-x: hidden;
 }
 
 #header {
@@ -26,6 +25,9 @@ body {
     font-size: xx-large;
     vertical-align: top;
     background-color: var(--section-bg);
+    border-bottom-color: var(--page-bg);
+    border-bottom-width: 0.25rem;
+    border-bottom-style: solid;
 }
 
 #header-text {
@@ -62,7 +64,7 @@ body {
     right: 0;
     margin: 0.5rem;
     margin-top: 0;
-    width: var(--right-sidebar-width);
+    max-width: var(--right-sidebar-width);
     height: 100%;
 }
 
@@ -252,27 +254,31 @@ audio::-webkit-media-controls-enclosure {
 }
 
 .song-li {
-    display: list-item;
     margin: 0.5rem;
     padding: 1rem;
     background-color: var(--section-bg);
     border-radius: 0.25rem;
     cursor: pointer;
+    overflow: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
 }
 
 .song-li-left {
-    display: inline-block;
     vertical-align: middle;
+    white-space: normal;
 }
 
 .song-li-centre {
-    display: inline-block;
     vertical-align: middle;
+    white-space: normal;
 }
 
 .song-li-right {
     vertical-align: middle;
-    float: right;
+    margin-left: auto;
+    white-space: normal;
 }
 
 .song-li-right:hover {
@@ -282,6 +288,7 @@ audio::-webkit-media-controls-enclosure {
 .song-li-thumb-cover {
     width: 4.5rem;
     height: 4.5rem;
+    vertical-align: middle;
 }
 
 .song-li-thumb {

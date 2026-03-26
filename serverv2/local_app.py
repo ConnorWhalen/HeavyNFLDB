@@ -1,6 +1,6 @@
 from flask import Flask
 
-app = Flask("serverv2")
+app = Flask("serverv2", static_url_path="/", static_folder="../docs")
 
 @app.route('/')
 def index():
