@@ -226,7 +226,9 @@ audio::-webkit-media-controls-enclosure {
 }
 
 #search-section {
-    display: list-item;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
     margin: 0.5rem;
     padding: 0.5rem;
     background-color: var(--section-bg);
@@ -258,7 +260,15 @@ audio::-webkit-media-controls-enclosure {
     display: inline-block;
     vertical-align: middle;
     margin-left: 0.5rem;
-    margin-right: 1rem;
+    margin-right: 0.25rem;
+}
+
+#main-search-close {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: 0.5rem;
+    cursor: pointer;
 }
 
 #main-search-centre {

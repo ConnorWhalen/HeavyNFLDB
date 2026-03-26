@@ -47,15 +47,20 @@ $(document).ready(async function () {
     songsClick(null);
 
     $('#main-search').on('input', function() {mainFeedSearchFunc($(this).val());});
+
+    $('#main-search-close').on('click', () => {$('#main-search').val(''); mainFeedSearchFunc('');});
 });
 
 function setMainFeed(list, liFunc, searchFunc) {
     mainFeed.replaceChildren();
     mainFeedList = list;
     mainFeedLIFunc = liFunc;
-    if (searchFunc) mainFeedSearchFunc = searchFunc;
     mainFeedPage = 0;
     setMainFeedPage();
+    if (searchFunc) {
+        mainFeedSearchFunc = searchFunc;
+        searchFunc($('#main-search').val());
+    }
 }
 
 function setMainFeedPage() {
