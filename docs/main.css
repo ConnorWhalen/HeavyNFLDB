@@ -13,6 +13,7 @@ body {
     background-color: var(--page-bg);
     color: var(--text-color);   
     font-family: Lato, sans-serif;
+    overflow-x: hidden;
 }
 
 #header {
