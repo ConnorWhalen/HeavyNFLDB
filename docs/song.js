@@ -33,10 +33,37 @@ function createSongPreview(song) {
             `<img class="song-preview-thumb" src="https://assets.heavynfldb.ca/thumbnails/${song.video_id}/hqdefault.jpg"></img>` +
         '</div>'
     );
-    preview.innerHTML += `${song.title}<br/>${song.artist}<br/>${song.album}<br/>${song.release_date}<br/>${song.genre}<br/>${song.hometown}<br/>${song.label}`
+    preview.innerHTML += (
+        '<div class="song-preview-title">' +
+            `${song.title}` +
+            `<span id="song-preview-play" class="song-preview-icon-right">${playIcon(64)}</span>` +
+        '</div>' +
+        '<div class="song-preview-subtitle">' +
+            `<span class="song-preview-icon-left">${profileIcon(24)}</span>` +
+            `${song.artist}` +
+            `<span id="song-preview-artist" class="song-preview-icon-right">${arrowIcon(48)}</span>` +
+        '</div>' +
+        '<div class="song-preview-subtitle">' +
+            `<span class="song-preview-icon-left">${discIcon(24)}</span>` +
+            `${song.album}` +
+            `<span id="song-preview-album" class="song-preview-icon-right">${arrowIcon(48)}</span>` +
+        '</div>' +
+        `<br/>${song.release_date}<br/>` +
+        `${song.genre}<br/>` +
+        `${song.hometown}<br/>` +
+        `${song.label}`
+    )
     preview.style.display = 'block';
 
     $('#song-preview-close').on('click', (event) => {preview.style.display = 'none';});
+    $('#song-preview-play').on('click', (event) => {playSong(song);});
+    $('#song-preview-artist').on('click', (event) => {createArtistPreviewById(song.artist_id)});
+    $('#song-preview-album').on('click', (event) => {createAlbumPreviewById(song.album_id)});
+}
+
+function createSongPreviewById(song_id) {
+    const song = songs.find((s) => s.id === song_id);
+    createSongPreview(song);
 }
 
 function playSong(song) {

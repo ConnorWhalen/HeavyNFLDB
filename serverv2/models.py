@@ -54,7 +54,8 @@ class Artist(Base):
             "name": self.name,
             "hometowns": list({song.hometown for song in self.songs if song.hometown}),
             "genres": genres,
-            "albums": list(album.name for album in self.albums),
+            "albums": [album.name for album in self.albums],
+            "album_ids": [album.id for album in self.albums],
             "thumb_video_id": self.songs[0].video_id,
         }
     
@@ -72,8 +73,10 @@ class Album(Base):
             "id": self.id,
             "name": self.name,
             "artists": [artist.name for artist in self.artists],
+            "artist_ids": [artist.id for artist in self.artists],
             "thumb_video_id": self.songs[0].video_id,
-            "songs": [song.title for song in self.songs]
+            "songs": [song.title for song in self.songs],
+            "song_ids": [song.id for song in self.songs]
         }
     
 

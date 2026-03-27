@@ -11,7 +11,7 @@
 
 body {
     background-color: var(--page-bg);
-    color: var(--text-color);   
+    color: var(--text-color);
     font-family: Lato, sans-serif;
     overflow-x: hidden;
 }
@@ -179,6 +179,38 @@ audio::-webkit-media-controls-enclosure {
     object-fit: cover;
 }
 
+.song-preview-title {
+    margin-left: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-size: x-large;
+}
+
+.song-preview-subtitle {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-size: large;
+}
+
+.song-preview-icon-left {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.song-preview-icon-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.song-preview-icon-right:hover {
+    color: white;
+    cursor: pointer;
+}
+
 #album-preview {
     display: none;
     position: relative;
@@ -210,6 +242,12 @@ audio::-webkit-media-controls-enclosure {
     border-radius: 0.25rem;
     align-items: center;
     line-height: 150%;
+}
+
+.album-preview-song:hover,
+.artist-preview-album:hover {
+    color: white;
+    cursor: pointer;
 }
 
 #main-feed {

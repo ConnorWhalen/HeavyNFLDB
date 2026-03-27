@@ -20,10 +20,10 @@ def create_index(objs: Base, model: type[Base], name: str, idx_fields: list[str]
         documents=obj_dict
     )
 
-    with gzip.open(f"serverv2/static/data/{name}.json.gz", "wt") as f:
+    with gzip.open(f"docs/data/{name}.json.gz", "wt") as f:
         json.dump(obj_dict, f)
 
-    with gzip.open(f"serverv2/static/data/{name}_idx.json.gz", "wt") as f:
+    with gzip.open(f"docs/data/{name}_idx.json.gz", "wt") as f:
         json.dump(obj_idx.serialize(), f)
 
 
@@ -38,7 +38,7 @@ def save_model(session: Session, model: type[Base], name: str, filters: list[Bin
 
     obj_dict = [obj.to_dict() for obj in objs]
 
-    with gzip.open(f"serverv2/static/data/{name}.json.gz", "wt") as f:
+    with gzip.open(f"docs/data/{name}.json.gz", "wt") as f:
         json.dump(obj_dict, f)
 
 
